@@ -1,0 +1,52 @@
+import pandas as pd
+from scipy.stats import chi2_contingency
+
+# Sample data (contingency table)
+# Example: Relationship between gender and preference for a certain product data = {'Cintent V': [23, 17],
+'Cintent A': [13, 35],
+'Cintent T': [30, 28]}
+index = ['Male', 'Female']
+contingency_table = pd.DataFrame(data, index=index)
+
+print("Contingency Table:") print(contingency_table)
+# Perform the Chi-square test
+chi2, p_value, dof, expected = chi2_contingency(contingency_table)
+significance = 9.2
+print("Expected frequencies table:")
+print(pd.DataFrame(expected, columns=contingency_table.columns, index=contingency_table.index))
+print(f"Degrees of freedom: {dof}") print(f"\nsignificance: {significance:.2f}") print(f"\nChi-square statistic: {chi2:.2f}")
+# Interpret the result
+if chi2 < significance:
+ 
+print("\nReject the null hypothesis: There is a significant association between the variables.")
+else:
+print("\nFail to reject the null hypothesis: There is no significant association between the variables.")
+Output:
+Contingency Table:
+Cintent V Cintent A Cintent T Male	23	13	30
+Female	17	35	28 Expected frequencies table:
+Cintent V Cintent A Cintent T
+Male 18.082192 21.69863 26.219178
+Female 21.917808 26.30137 31.780822
+Degrees of freedom: 2
+
+significance: 9.20
+
+Chi-square statistic: 9.80
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
